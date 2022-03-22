@@ -40,6 +40,8 @@ requirements:
     - yapf
 
 test:
+  imports:
+    - pylsp
   requires:
     - pip
   commands:
