@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  noarch: python
+  skip: True  # [py<36]
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - pylsp = pylsp.__main__:main
@@ -23,6 +23,7 @@ requirements:
     - setuptools
     - wheel
   run:
+    - importlib-metadata <4.3  # flake8 requires an older version of importlib-metadata
     - autopep8 >=1.6.0,<1.7.0
     - flake8 >=4.0.0,<4.1.0
     - jedi >=0.17.2,<0.19.0
