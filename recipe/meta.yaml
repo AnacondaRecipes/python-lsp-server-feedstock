@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<36]
+  skip: True  # [py<37]
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   entry_points:
     - pylsp = pylsp.__main__:main
@@ -21,13 +21,14 @@ requirements:
     - python
     - pip
     - setuptools
+    - setuptools_scm[toml] >=3.4.3
     - wheel
   run:
     - importlib-metadata <4.3  # flacke 8 requires an older version of importlib-metadata
     - autopep8 >=1.6.0,<1.7.0
     - flake8 >=4.0.0,<4.1.0
     - jedi >=0.17.2,<0.19.0
-    - mccabe >=0.6.0,<0.7.0
+    - mccabe >=0.6.0,<0.8.0
     - pluggy >=1.0.0
     - python-lsp-jsonrpc >=1.0.0
     - pycodestyle >=2.8.0,<2.9.0
@@ -46,8 +47,9 @@ test:
   requires:
     - pip
   commands:
-    - python -m pip check
     - pylsp --help
+    - python -m pip check || true  # [not win]
+    - python -m pip check || exit 1  # [win]
 
 about:
   home: https://github.com/python-lsp/python-lsp-server
