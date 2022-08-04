@@ -21,7 +21,9 @@ requirements:
     - python
     - pip
     - setuptools
-    - setuptools_scm[toml] >=3.4.3
+    # - setuptools_scm[toml] >=3.4.3
+    - setuptools_scm >=3.4.3
+    - toml
     - wheel
   run:
     - importlib-metadata <4.3  # flacke 8 requires an older version of importlib-metadata
