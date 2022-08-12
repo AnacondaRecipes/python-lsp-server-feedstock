@@ -20,7 +20,7 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
+    - setuptools >=39.0.0
     - setuptools_scm >=3.4.3
     - wheel
   run:
@@ -37,6 +37,7 @@ requirements:
     - pylint >=2.5.0
     - python
     - rope >=0.10.5
+    - setuptools >=39.0.0
     - ujson >=3.0.0
     - yapf
 
@@ -47,8 +48,8 @@ test:
     - pip
   commands:
     - pylsp --help
-    - python -m pip check || true  # [not win]
-    - python -m pip check || exit 1  # [win]
+    - python -m pip check
+    - python -m pip check
 
 about:
   home: https://github.com/python-lsp/python-lsp-server
