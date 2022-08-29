@@ -50,7 +50,6 @@ test:
   commands:
     - pylsp --help
     - python -m pip check
-    - python -m pip check
 
 about:
   home: https://github.com/python-lsp/python-lsp-server
