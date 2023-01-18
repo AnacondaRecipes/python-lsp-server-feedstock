@@ -1,5 +1,5 @@
 {% set name = "python-lsp-server" %}
-{% set version = "1.5.0" %}
+{% set version = "1.7.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e5c094c19925022a27c4068f414b2bb653243f8fb0d768e39735289d7a89380d
+  sha256: 67473bb301f35434b5fa8b21fc5ed5fac27dc8a8446ccec8bae456af52a0aef6
 
 build:
   number: 0
@@ -24,7 +24,9 @@ requirements:
     - setuptools_scm >=3.4.3
     - wheel
   run:
+    - python
     - autopep8 >=1.6.0,<1.7.0
+    - docstring-to-markdown
     - flake8 >=4.0.0,<4.1.0
     - jedi >=0.17.2,<0.19.0
     - mccabe >=0.6.0,<0.8.0
@@ -34,7 +36,6 @@ requirements:
     - pydocstyle >=2.0.0
     - pyflakes >=2.4.0,<2.5.0
     - pylint >=2.5.0
-    - python
     - rope >=0.10.5
     - setuptools >=39.0.0
     - ujson >=3.0.0
