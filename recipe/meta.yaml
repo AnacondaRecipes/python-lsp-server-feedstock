@@ -22,7 +22,7 @@ requirements:
     - python
     - pip
     - setuptools >=39.0.0
-    - setuptools_scm >=3.4.3
+    - setuptools_scm[toml]>=3.4.3
     - wheel
   run:
     - python
@@ -33,7 +33,6 @@ requirements:
     - mccabe >=0.7.0,<0.8.0
     - pluggy >=1.0.0
     - python-lsp-jsonrpc >=1.0.0
-    # - pycodestyle >=2.9.0,<2.11.0
     - pycodestyle =2.10.0
     - pydocstyle >=6.2.0,<6.4.0
     - pyflakes >=2.5.0,<3.1.0
@@ -57,7 +56,6 @@ test:
 about:
   home: https://github.com/python-lsp/python-lsp-server
   license: MIT
-  license_url: https://github.com/python-lsp/python-lsp-server/blob/develop/LICENSE
   license_family: MIT
   license_file: LICENSE
   summary: An implementation of the Language Server Protocol for Python
@@ -66,7 +64,6 @@ about:
     making use of Jedi, pycodestyle, Pyflakes and YAPF.
   dev_url: https://github.com/python-lsp/python-lsp-server
   doc_url: https://github.com/python-lsp/python-lsp-server/blob/develop/README.md
-  doc_source_url: https://github.com/python-lsp/python-lsp-server/tree/develop/docs
 extra:
   recipe-maintainers:
     - ccordoba12
