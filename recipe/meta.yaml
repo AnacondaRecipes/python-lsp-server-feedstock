@@ -39,7 +39,7 @@ requirements:
     - pylint >=2.5.0,<3.0.0
     - rope >=1.2.0
     - ujson >=3.0.0
-    - yapf
+    - yapf <=0.32.0
     - whatthepatch >=1.0.2,<2.0.0
 
 test:
