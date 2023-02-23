@@ -22,7 +22,7 @@ requirements:
     - python
     - pip
     - setuptools >=39.0.0
-    - setuptools_scm[toml]>=3.4.3
+    - setuptools_scm >=3.4.3
     - wheel
   run:
     - python
