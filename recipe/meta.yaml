@@ -13,7 +13,7 @@ build:
   number: 0
   skip: True  # [py<38]
   # flake8 is unavailable for python versions less than 3.8.
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - pylsp = pylsp.__main__:main
 
@@ -34,10 +34,10 @@ requirements:
     - ujson >=3.0.0
     - setuptools >=39.0.0
   # Optional Dependencies
-    - autopep8 >=1.6.0,<1.7.0
+    - autopep8 >=1.6.0,<2.1.0
     - flake8 >=5.0.0,<7.0.0
     - mccabe >=0.7.0,<0.8.0
-    - pycodestyle =2.10.0
+    - pycodestyle >=2.9.0,<2.11.0
     - pydocstyle >=6.3.0,<6.4.0
     - pyflakes >=2.5.0,<3.1.0
     - pylint >=2.5.0,<3.0.0
