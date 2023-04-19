@@ -53,8 +53,7 @@ test:
     - pip
   commands:
     - pylsp --help
-    - python -m pip check || true  # [not win]
-    - python -m pip check || exit 1  # [win]
+    - pip check
     # this resolves the issue with flake 8 and importlib-metadata pinnings
 
 about:
