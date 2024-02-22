@@ -1,1 +1,9 @@
 aggregate_branch: 3.12
+
+channels:
+  - https://staging.continuum.io/prefect/fs/yapf-feedstock/pr2/2116827
+  - https://staging.continuum.io/prefect/fs/rope-feedstock/pr12/db9a8f9
+  - https://staging.continuum.io/prefect/fs/autopep8-feedstock/pr6/ec8ee6e
+  - https://staging.continuum.io/prefect/fs/pyflakes-feedstock/pr7/84c13ac
+  - https://staging.continuum.io/prefect/fs/flake8-feedstock/pr11/552e980
+  - https://staging.continuum.io/prefect/fs/python-lsp-jsonrpc-feedstock/pr1/6d8fc28
