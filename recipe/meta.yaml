@@ -1,5 +1,5 @@
 {% set name = "python-lsp-server" %}
-{% set version = "1.7.2" %}
+{% set version = "1.10.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b2433467d0fcb8fd45828463ff1cc805837c08731fcea5d7d953d9be776881e1
+  sha256: 0c9a52dcc16cd0562404d529d50a03372db1ea6fb8dfcc3792b3265441c814f4
 
 build:
   number: 0
   skip: True  # [py<38]
-  # flake8 is unavailable for python versions less than 3.8.
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - pylsp = pylsp.__main__:main
@@ -27,24 +26,25 @@ requirements:
   run:
   # Required Dependencies
     - python
-    - jedi >=0.17.2,<0.19.0
-    - python-lsp-jsonrpc >=1.0.0
-    - pluggy >=1.0.0
     - docstring-to-markdown
+    - importlib-metadata >=4.8.3  # [py<310]
+    - jedi >=0.17.2,<0.20.0
+    - pluggy >=1.0.0
+    - python-lsp-jsonrpc >=1.1.0,<2.0.0
     - ujson >=3.0.0
-    - setuptools >=39.0.0
-  # Optional Dependencies
-    - autopep8 >=1.6.0,<2.1.0
-    - flake8 >=5.0.0,<7.0.0
+  # Optional Dependencies - which have been included in our past releases
+    - autopep8 >=2.0.4,<2.1.0
+    - flake8 >=7,<8
     - mccabe >=0.7.0,<0.8.0
-    - pycodestyle >=2.9.0,<2.11.0
+    - pycodestyle >=2.11.0,<2.12.0
     - pydocstyle >=6.3.0,<6.4.0
-    - pyflakes >=2.5.0,<3.1.0
-    - pylint >=2.5.0,<3.0.0
-    - rope >=1.2.0
-    - toml
-    - yapf <=0.32.0
+    - pyflakes >=3.2.0,<3.3.0
+    - pylint >=2.5.0,<3.1
+    - rope >=1.11.0
+    - yapf >=0.33.0
     - whatthepatch >=1.0.2,<2.0.0
+  run_constrained:
+    - websockets >=10.3
 
 test:
   imports:
@@ -54,7 +54,6 @@ test:
   commands:
     - pylsp --help
     - pip check
-    # this resolves the issue with flake 8 and importlib-metadata pinnings
 
 about:
   home: https://github.com/python-lsp/python-lsp-server
@@ -63,10 +62,11 @@ about:
   license_file: LICENSE
   summary: An implementation of the Language Server Protocol for Python
   description: |
-    A Python 3.6+ implementation of the Language Server Protocol
+    A Python 3.8+ implementation of the Language Server Protocol
     making use of Jedi, pycodestyle, Pyflakes and YAPF.
   dev_url: https://github.com/python-lsp/python-lsp-server
   doc_url: https://github.com/python-lsp/python-lsp-server/blob/develop/README.md
+
 extra:
   recipe-maintainers:
     - ccordoba12
