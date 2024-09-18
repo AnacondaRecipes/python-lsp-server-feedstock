@@ -1,13 +1,13 @@
 {% set name = "python-lsp-server" %}
-{% set version = "1.10.0" %}
+{% set version = "1.12.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0c9a52dcc16cd0562404d529d50a03372db1ea6fb8dfcc3792b3265441c814f4
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace("-", "_") }}-{{ version }}.tar.gz
+  sha256: b6a336f128da03bd9bac1e61c3acca6e84242b8b31055a1ccf49d83df9dc053b
 
 build:
   number: 0
@@ -34,12 +34,12 @@ requirements:
     - ujson >=3.0.0
   # Optional Dependencies - which have been included in our past releases
     - autopep8 >=2.0.4,<2.1.0
-    - flake8 >=7,<8
+    - flake8 >=7.1,<8
     - mccabe >=0.7.0,<0.8.0
-    - pycodestyle >=2.11.0,<2.12.0
+    - pycodestyle >=2.12.0,<2.13.0
     - pydocstyle >=6.3.0,<6.4.0
     - pyflakes >=3.2.0,<3.3.0
-    - pylint >=2.5.0,<3.1
+    - pylint >=3.1,<4
     - rope >=1.11.0
     - yapf >=0.33.0
     - whatthepatch >=1.0.2,<2.0.0
@@ -49,11 +49,26 @@ requirements:
 test:
   imports:
     - pylsp
+    - pylsp.config
+    - pylsp.plugins
   requires:
     - pip
+    - pytest
+    - numpy
+    - pandas
+    - matplotlib
+    - pyqt >=5,<6  # [not s390x]
+    - flaky
+  source_files:
+    - .pylintrc
+    - test
   commands:
     - pylsp --help
     - pip check
+    # pyqt5 does not exist for s390x.
+    - pytest -v test -k "not test_pyqt_completion"  # [s390x]
+    # tests on osx-64 want to take place outside of test dirs and in places without removal permissions
+    - pytest -v test                                # [not (s390x or (osx and x86_64))]
 
 about:
   home: https://github.com/python-lsp/python-lsp-server
