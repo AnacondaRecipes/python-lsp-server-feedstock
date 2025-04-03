@@ -57,7 +57,7 @@ test:
     - numpy
     - pandas
     - matplotlib
-    - pyqt >=5,<6  # [not s390x]
+    - pyqt >=5,<6
     - flaky
   source_files:
     - .pylintrc
@@ -65,10 +65,9 @@ test:
   commands:
     - pylsp --help
     - pip check
-    # pyqt5 does not exist for s390x.
-    - pytest -v test -k "not test_pyqt_completion"  # [s390x]
+    # test_flake8_config_param expects unix paths
     # tests on osx-64 want to take place outside of test dirs and in places without removal permissions
-    - pytest -v test                                # [not (s390x or (osx and x86_64))]
+    - pytest -v test -k "not test_flake8_config_param" # [not (osx and x86_64)]
 
 about:
   home: https://github.com/python-lsp/python-lsp-server
