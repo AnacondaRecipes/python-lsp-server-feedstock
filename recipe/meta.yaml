@@ -1,5 +1,5 @@
 {% set name = "python-lsp-server" %}
-{% set version = "1.13.1" %}
+{% set version = "1.14.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace("-", "_") }}-{{ version }}.tar.gz
-  sha256: bfa3d6bbca3fc3e6d0137b27cd1eabee65783a8d4314c36e1e230c603419afa3
+  sha256: 509c445fc667f41ffd3191cb7512a497bf7dd76c14ceb1ee2f6c13ebe71f9a6b
 
 build:
   number: 0
-  skip: True  # [py<39]
+  skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - pylsp = pylsp.__main__:main
@@ -20,12 +20,12 @@ requirements:
   host:
     - pip
     - python
-    - wheel
     - setuptools >=69.0.0
     - setuptools_scm >=3.4.3
     - toml
+    - setuptools-scm >=3.4.3
   run:
-  # Required Dependencies
+    # Required Dependencies
     - python
     - docstring-to-markdown
     - importlib-metadata >=4.8.3  # [py<310]
@@ -34,7 +34,7 @@ requirements:
     - python-lsp-jsonrpc >=1.1.0,<2.0.0
     - ujson >=3.0.0
     - black
-  # Optional Dependencies - which have been included in our past releases
+    # Optional Dependencies - which have been included in our past releases
     - autopep8 >=2.0.4,<2.1.0
     - flake8 >=7.1,<8
     - mccabe >=0.7.0,<0.8.0
@@ -47,6 +47,14 @@ requirements:
     - whatthepatch >=1.0.2,<2.0.0
   run_constrained:
     - websockets >=10.3
+    - autopep8 >=2.0.4,<2.1.0
+    - flake8 >=7.1,<8
+    - mccabe >=0.7.0,<0.8.0
+    - pycodestyle >=2.12.0,<2.13.0
+    - pyflakes >=3.2.0,<3.3.0
+    - rope >=1.11.0
+    - yapf >=0.33.0
+    - whatthepatch >=1.0.2,<2.0.0
 
 test:
   source_files:
