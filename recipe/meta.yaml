@@ -1,20 +1,20 @@
 {% set name = "python-lsp-server" %}
-{% set version = "1.13.1" %}
+{% set version = "1.14.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace("-", "_") }}-{{ version }}.tar.gz
-  sha256: bfa3d6bbca3fc3e6d0137b27cd1eabee65783a8d4314c36e1e230c603419afa3
+  sha256: 509c445fc667f41ffd3191cb7512a497bf7dd76c14ceb1ee2f6c13ebe71f9a6b
 
 build:
   number: 0
-  skip: True  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - pylsp = pylsp.__main__:main
+  skip: true  # [py<39]
 
 requirements:
   host:
