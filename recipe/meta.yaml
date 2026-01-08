@@ -40,7 +40,10 @@ requirements:
     - mccabe >=0.7.0,<0.8.0
     - pycodestyle >=2.12.0,<2.13.0
     - pydocstyle >=6.3.0,<6.4.0
-    - pyflakes >=3.2.0,<3.3.0
+    - pyflakes >=3.2.0,<3.3.0  # [py<314]
+    # pyflakes updated source code to support Python 3.14 in version 3.4.0
+    # https://github.com/PyCQA/pyflakes/commit/e5d4ba166d3b9236ba2ece8ae1c66a99752a5666
+    - pyflakes ==3.4.0  # [py==314]
     - pylint >=3.1,<4
     - rope >=1.11.0
     - yapf >=0.33.0
