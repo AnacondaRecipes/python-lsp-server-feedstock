@@ -3,3 +3,4 @@ build_env_vars:
 
 channels:
   - https://staging.continuum.io/pbp/fs/pylint-feedstock/pr28/e76f7a0
+  - https://staging.continuum.io/pbp/fs/pydocstyle-feedstock/pr2/36d05e6
