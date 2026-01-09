@@ -1,20 +1,20 @@
 {% set name = "python-lsp-server" %}
-{% set version = "1.13.1" %}
+{% set version = "1.14.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace("-", "_") }}-{{ version }}.tar.gz
-  sha256: bfa3d6bbca3fc3e6d0137b27cd1eabee65783a8d4314c36e1e230c603419afa3
+  sha256: 509c445fc667f41ffd3191cb7512a497bf7dd76c14ceb1ee2f6c13ebe71f9a6b
 
 build:
   number: 0
-  skip: True  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - pylsp = pylsp.__main__:main
+  skip: true  # [py<39]
 
 requirements:
   host:
@@ -38,9 +38,15 @@ requirements:
     - autopep8 >=2.0.4,<2.1.0
     - flake8 >=7.1,<8
     - mccabe >=0.7.0,<0.8.0
-    - pycodestyle >=2.12.0,<2.13.0
+    - pycodestyle >=2.12.0,<2.13.0  # [py<314]
+    # pycodestyle updated source code to support Python 3.14 in version 2.14.0
+    # https://github.com/PyCQA/pycodestyle/commit/ae41b3420360a9f6732b316f5746c56146a37932
+    - pycodestyle ==2.14.0  # [py==314]
     - pydocstyle >=6.3.0,<6.4.0
-    - pyflakes >=3.2.0,<3.3.0
+    - pyflakes >=3.2.0,<3.3.0  # [py<314]
+    # pyflakes updated source code to support Python 3.14 in version 3.4.0
+    # https://github.com/PyCQA/pyflakes/commit/e5d4ba166d3b9236ba2ece8ae1c66a99752a5666
+    - pyflakes ==3.4.0  # [py==314]
     - pylint >=3.1,<4
     - rope >=1.11.0
     - yapf >=0.33.0
@@ -78,7 +84,7 @@ about:
   summary: An implementation of the Language Server Protocol for Python
   description: |
     A Python 3.8+ implementation of the Language Server Protocol
-    making use of Jedi, pycodestyle, Pyflakes and YAPF.
+    making use of Jedi, pycodestyle, Pyflakes, and YAPF.
   dev_url: https://github.com/python-lsp/python-lsp-server
   doc_url: https://github.com/python-lsp/python-lsp-server/blob/develop/README.md
 
