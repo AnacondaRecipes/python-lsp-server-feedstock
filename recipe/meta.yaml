@@ -21,9 +21,8 @@ requirements:
     - pip
     - python
     - setuptools >=69.0.0
-    - setuptools_scm >=3.4.3
-    - toml
     - setuptools-scm >=3.4.3
+    - toml
   run:
     # Required Dependencies
     - python
@@ -53,12 +52,6 @@ requirements:
     - whatthepatch >=1.0.2,<2.0.0
   run_constrained:
     - websockets >=10.3
-    - autopep8 >=2.0.4,<2.1.0
-    - flake8 >=7.1,<8
-    - mccabe >=0.7.0,<0.8.0
-    - rope >=1.11.0
-    - yapf >=0.33.0
-    - whatthepatch >=1.0.2,<2.0.0
 
 test:
   source_files:
